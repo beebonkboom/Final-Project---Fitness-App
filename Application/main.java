@@ -1176,7 +1176,7 @@ public class main {
             }else if(c == 2){
                 System.out.println("Enter New Username: ");
                 String newUsername = sc.next();
-                st = connection.prepareStatement("UPDATE trainer SET username = ? WHERE username = ?");
+                st = connection.prepareStatement("UPDATE trainer SET username = ? WHERE trainer_id = ?");
                 st.setString(1, newUsername);
                 st.setInt(2, user_id);
                 st.executeUpdate();
@@ -1184,7 +1184,7 @@ public class main {
             }else if(c == 3) {
                 System.out.println("Enter New Password: ");
                 String newPassword = sc.next();
-                st = connection.prepareStatement("UPDATE trainer SET trainer_password = ? WHERE username = ?");
+                st = connection.prepareStatement("UPDATE trainer SET trainer_password = ? WHERE trainer_id = ?");
                 st.setString(1, newPassword);
                 st.setInt(2, user_id);
                 st.executeUpdate();
