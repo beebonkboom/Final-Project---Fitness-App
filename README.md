@@ -17,7 +17,7 @@
 - Open PgAdmin and connect to your PostgreSQL server.
 - Create a new database named "Fitness_App" (exactly spelt as such).
 - Navigate to the "Query Tool" in PgAdmin.
-- Open the downloaded SQL file in the query tool.
+- Open the downloaded SQL files in the query tool.
 - Execute the queries in the SQL file individually to create the necessary tables and populate them with initial data.
 
 ## 2. Setting up the Application:
