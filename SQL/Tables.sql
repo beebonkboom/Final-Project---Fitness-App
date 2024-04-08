@@ -8,7 +8,7 @@ create table fit_member (
 	username            text not null unique,
 	mem_password        text not null,
 	age					int,
-	bill				int DEFAULT 50,
+	bill				decimal(5, 2) DEFAULT 50.00,
 	primary key (mem_id)
 );
 
