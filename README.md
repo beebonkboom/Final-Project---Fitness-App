@@ -4,6 +4,7 @@
 **STUDENT IDS:** 101257784, 101267705
 
 **LINK TO VIDEO DEMO:** 
+https://youtu.be/BqxKkPTkl_s
 
 ## Prerequisites:
 - IntelliJ IDEA (or any preferred Java IDE)
