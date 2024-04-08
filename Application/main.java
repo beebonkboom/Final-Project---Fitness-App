@@ -3,9 +3,9 @@ import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.Scanner;
 public class main {
-    private static final String url = "jdbc:postgresql://localhost:5432/FitnessClub";
-    private static final String user = "postgres";
-    private static final String password = "teremi74";
+    private static final String url = "";
+    private static final String user = "";
+    private static final String password = "";
     public static int user_id = -1;
 
     public static void main(String[] args) {
