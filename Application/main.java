@@ -471,7 +471,7 @@ public class main {
                         System.out.println("Email: " + rs.getString("email"));
                         System.out.println("Username: " + rs.getString("username"));
                         System.out.println("Age: " + rs.getInt("age"));
-                        System.out.println("Bill: " + rs.getInt("bill"));
+                        System.out.println("Bill: " + rs.getDouble("bill"));
                         viewMemberHealth();
 
                     } else {
@@ -627,7 +627,7 @@ public class main {
             String insertSQL = "update fit_member set bill = ? where mem_id = ?";
             try (PreparedStatement pstmt = connection.prepareStatement(insertSQL)){
 
-                pstmt.setFloat(1, p);
+                pstmt.setDouble(1, p);
                 pstmt.setInt(2, user_id);
 
                 int rowsinserted = pstmt.executeUpdate();
@@ -1020,6 +1020,16 @@ public class main {
             ps = connection.prepareStatement("UPDATE room_booking SET curr_size = ? WHERE room_book_id = ?");
             ps.setInt(1, size+1);
             ps.setInt(2, sesh);
+            ps.executeUpdate();
+            ps = connection.prepareStatement("SELECT bill FROM fit_member WHERE mem_id = ?");
+            ps.setInt(1, user_id);
+            ps.executeQuery();
+            rs = ps.getResultSet();
+            rs.next();
+            double total = rs.getDouble("bill") + price;
+            ps = connection.prepareStatement("UPDATE fit_member SET bill = ? WHERE mem_id = ?");
+            ps.setDouble(1, total);
+            ps.setInt(2, user_id);
             ps.executeUpdate();
             System.out.println("Enrolled successfully");
         }
@@ -1614,7 +1624,7 @@ public class main {
             System.out.println("-------------Member Profiles-------------");
             System.out.println( String.format("%-15s%-25s%-15s%-20s", "Member ID", "Member Name", "Username", "Current Balance"));
             while(rs.next()){
-                System.out.println(String.format("%-15s%-20s%-15s%-10s" , rs.getInt("mem_id"), rs.getString("first_name") + " " + rs.getString("last_name"), rs.getString("username"), rs.getString("bill") + "$"));
+                System.out.println(String.format("%-15s%-20s%-15s%-10s" , rs.getInt("mem_id"), rs.getString("first_name") + " " + rs.getString("last_name"), rs.getString("username"), rs.getDouble("bill") + "$"));
             }
         }
         catch(Exception e){
@@ -1637,10 +1647,10 @@ public class main {
             st.executeQuery();
             ResultSet rs = st.getResultSet();
             rs.next();
-            int total = rs.getInt("bill");
-            int newTotal = total - amount;
+            double total = rs.getDouble("bill");
+            double newTotal = total - amount;
             st = connection.prepareStatement("UPDATE fit_member SET bill = ? WHERE username = ?");
-            st.setInt(1, newTotal);
+            st.setDouble(1, newTotal);
             st.setString(2, memUsername);
             st.executeUpdate();
             System.out.println("Payment processed successfully");
